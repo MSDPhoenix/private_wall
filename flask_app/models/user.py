@@ -4,8 +4,8 @@ import re
 from flask_app import app
 from flask_bcrypt import Bcrypt
 from flask_app.models import message
-bcrypt = Bcrypt(app)
 db = 'private_wall'
+bcrypt = Bcrypt(app)
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-z]+$')
 
 

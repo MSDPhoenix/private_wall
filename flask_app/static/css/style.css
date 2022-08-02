@@ -1,0 +1,10 @@
+* {
+    outline:red 1px dotted;
+    font-size: x-large;
+}
+input {
+    border:2px black solid;
+}
+input[type="submit"] {
+    box-shadow: 5px 5px 5px black;
+}
