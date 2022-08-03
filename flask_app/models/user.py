@@ -3,7 +3,7 @@ from flask import flash
 import re
 from flask_app import app
 from flask_bcrypt import Bcrypt
-from flask_app.models import message
+from flask_app.models.message import Message
 db = 'private_wall'
 bcrypt = Bcrypt(app)
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-z]+$')
@@ -39,21 +39,18 @@ class User:
                 '''
         result = connectToMySQL(db).query_db(query,data)
         user = cls(result[0])
+        user.messages_sent = Message.get_messages_sent(data)
         return user
 
     @classmethod
-    def get_all(cls,data):
+    def get_other_users(cls,data):
         query = '''
-                SELECT * FROM users;
+                SELECT * FROM users WHERE id !=%(user_id)s ORDER BY first_name;
                 '''
         result = connectToMySQL(db).query_db(query,data)
         users = []
         for row in result:
-            user = cls[row]
-            message_data = {
-                'user_id' : user.id
-            }
-            user.messages_received = message.Message.get_received_messages(message_data)
+            user = cls(row)
             users.append(user)
         return users
 

@@ -5,7 +5,7 @@
     box-sizing: border-box;
     vertical-align: top;
     font-size: x-large;
-    outline:red 1px dotted;
+    /* outline:red 1px dotted; */
 }
 input, textarea {
     border:2px black solid;
@@ -13,23 +13,9 @@ input, textarea {
 input[type="submit"] {
     box-shadow: 5px 5px 5px black;
 }
-.navbar {
-    /* display:flex; */
-    /* align-items:center; */
-    padding: 1% 2%;
-}
-.navbar h2 {
-    margin-left:auto;
-    margin-right:75px;
-}
-.navbar a {
-    font-size:42px;
-    margin-top: -8px;
-}
 li {
     color:red;
 }
 .trash {
     width:2.5vw;
-    /* height: 3vw; */
 }

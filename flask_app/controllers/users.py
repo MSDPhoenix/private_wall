@@ -7,7 +7,6 @@ bcrypt = Bcrypt(app)
 
 @app.route('/register/',methods=['POST'])
 def register():
-    # how do I prevent users from entering localhost:5001/register/ in the search bar?
     if not User.validate(request.form):
         session['first_name'] = request.form['first_name']
         session['last_name'] = request.form['last_name']
@@ -28,7 +27,6 @@ def register():
     
 @app.route('/login/',methods=['POST'])
 def login():
-    # how do I prevent users from entering localhost:5001/login/ in the search bar?
     data = {
         'email' : request.form['email']
     }
