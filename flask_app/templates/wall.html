@@ -1,5 +1,75 @@
 {% extends 'index.html' %}
 
 {% block body %}
+<div class="d-flex align-items-center py-2 px-2 border-bottom border-dark">
+    <h1>CodingDojo Wall</h1>
+    <h2 class="ms-auto">Welcome, {{user.first_name}}!</h2>
+    <a class="fs-3 ms-5" href="/logout/">Log Out</a>
+</div>
+<div class="containerxxxxx px-5">
+    <div class="row ">
+        <div class="col border-end border-dark py-5 pe-5">
+            <h3 class="text-decoration-underline">{#{}#} Messages for you</h3>
+            
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="mb-2">
+                    <p>Noelle said (3 hours ago):</p>
+                    <p class="ps-5">"I love Python! Don't you?"</p>
+                </div>
+                <img class="trash ms-3" src="{{url_for('static',filename='images/banana.png')}}" alt="" srcset="">
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="mb-2">
+                    <p>Noelle said (3 hours ago):</p>
+                    <p class="ps-5">"I love Python! Don't you?"</p>
+                </div>
+                <img class="trash ms-3" src="{{url_for('static',filename='images/banana.png')}}" alt="" srcset="">
+            </div>
+
+            {% for message in messages %}
+            <div class="d-flex justify-content-">
+                <div class="mb-3">
+                    <p>Noelle said (3 hours ago):</p>
+                    <p class="ps-5">"I love Python! Don't you?"</p>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+        <div class="col py-5 ps-5">
+            <h3 class="text-decoration-underline">Send Messages</h3>
+            <p>You have sent 12 messsages so far.</p>
+            
+            <form class="mb-3" action="/send_message/" action="post">
+                <input type="hidden" name="user_id" value="person.id">
+                <div class="d-flex align-items-start">
+                    <label class="me-auto" for="">person.first_name</label>
+                    <textarea class="me-3 p-1"name="content" id="" cols="30" rows="2"></textarea>
+                    <input class="px-1 fs-6" type="submit" value="Send"></div>
+            </form>
+        
+            <form action="/send_message/" action="post">
+                <input type="hidden" name="user_id" value="person.id">
+                <div class="d-flex align-items-start">
+                    <label class="me-auto" for="">person.first_name</label>
+                    <textarea class="me-3 p-1"name="content" id="" cols="30" rows="2"></textarea>
+                    <input class="px-1 fs-6" type="submit" value="Send"></div>
+            </form>
+        
+            {% for person in users %}
+            <form action="/send_message/" action="post">
+                <input type="hidden" name="user_id" value="person.id">
+                <div class="d-flex">
+                    <label for="">person.first_name</label>
+                    <textarea name="content" cols="30" rows="10"></textarea>
+                    <input type="submit" value="Send"></div>
+            </form>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
 
 {% endblock body %}

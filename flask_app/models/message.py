@@ -16,3 +16,4 @@ class Message:
         self.updated_at = data['xxx']
         self.sender = None
         self.receiver = None
+

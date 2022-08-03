@@ -11,10 +11,10 @@ def index():
 
 @app.route('/wall/')
 def wall():
-    if 'user_id' not in session:
+    if not 'user_id' in session:
         return redirect('/')
     data = { 
         'user_id' : session['user_id'] 
         }
-    user = User(data)
+    user = User.get_by_id(data)
     return render_template('wall.html',user=user)

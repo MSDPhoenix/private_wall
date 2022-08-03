@@ -9,16 +9,15 @@ bcrypt = Bcrypt(app)
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-z]+$')
 
 
-
 class User:
     def __init__(self,data):
-        self.id = data['xxx']
-        self.first_name = data['xxx']
-        self.last_name = data['xxx']
-        self.email = data['xxx']
-        self.password = data['xxx']
-        self.created_at = data['xxx']
-        self.updated_at = data['xxx']
+        self.id = data['id']
+        self.first_name = data['first_name']
+        self.last_name = data['last_name']
+        self.email = data['email']
+        self.password = data['password']
+        self.created_at = data['created_at']
+        self.updated_at = data['updated_at']
         self.messages_received = []
         self.messages_sent = []
     
@@ -28,13 +27,15 @@ class User:
                 SELECT * FROM users WHERE email = %(email)s;
                 '''
         result = connectToMySQL(db).query_db(query,data)
+        if len(result) < 1:
+            return False
         user = cls(result[0])
         return user
 
     @classmethod
     def get_by_id(cls,data):
         query = '''
-                SELECT * FROM users WHERE id = %(id)s;
+                SELECT * FROM users WHERE id = %(user_id)s;
                 '''
         result = connectToMySQL(db).query_db(query,data)
         user = cls(result[0])

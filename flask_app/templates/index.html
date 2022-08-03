@@ -16,50 +16,69 @@
 <div class="container">
     <div class="row my-4">
         <form class="col pt-4 pe-5" action="/register/" method="post">
+            {% with errors = get_flashed_messages(category_filter=['register']) %}
+                {% if errors %}
+                    <div class="errors">
+                        <ul>
+                            {% for msg in errors %}
+                                <li>{{ msg }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endwith %}
             <h1 class="mb-4">Registration</h1>
             <div class="row my-4">
                 <label class="col-5 my-auto" for="first_name">First name</label>
-                <input type="text" name="" class="col-7 p-2">
+                <input type="text" name="first_name" class="col-7 p-2" value="{{session.first_name}}">
             </div>
             <div class="row my-4">
                 <label class="col-5 my-auto" for="last_name">Last name</label>
-                <input type="text" name="" class="col-7 p-2">
+                <input type="text" name="last_name" class="col-7 p-2" value="{{session.last_name}}">
             </div>
             <div class="row my-4">
                 <label class="col-5 my-auto" for="email">Email</label>
-                <input type="text" name="" class="col-7 p-2">
+                <input type="text" name="email" class="col-7 p-2" value="{{session.email}}">
             </div>
             <div class="row my-4">
                 <label class="col-5 my-auto" for="password">Password</label>
-                <input type="password" name="" class="col-7 p-2">
+                <input type="password" name="password" class="col-7 p-2" value="{{session.password}}">
             </div>
             <div class="row my-4">
                 <label class="col-5 my-auto" for="confirm_password">Confirm password</label>
-                <input type="password" name="" class="col-7 p-2">
+                <input type="password" name="confirm_password" class="col-7 p-2" value="{{session.confirm_password}}">
             </div>
             <div class="d-flex">
                 <input type="submit" value="Register" class="mx-auto py-1 px-3">
             </div>
         </form>
         <form class="col pt-4 ps-5" action="/login/" method="post">
+            {% with errors = get_flashed_messages(category_filter=['login']) %}
+                {% if errors %}
+                    <div class="errors">
+                        <ul>
+                            {% for msg in errors %}
+                                <li>{{ msg }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endwith %}
             <h1 class="mb-4">Login</h1>
             <div class="row my-4">
                 <label class="col-5 my-auto" for="email">Email</label>
-                <input type="text" name="" class="col-7 p-2">
+                <input type="text" name="email" class="col-7 p-2" value="{{session.email2}}">
             </div>
             <div class="row my-4">
                 <label class="col-5 my-auto" for="password">Password</label>
-                <input type="password" name="" class="col-7 p-2">
+                <input type="password" name="password" class="col-7 p-2" value="{{session.password2}}">
             </div>
             <div class="d-flex">
-                <input type="submit" value="Register" class="mx-auto py-1 px-3">
+                <input type="submit" value="Login" class="mx-auto py-1 px-3">
             </div>
     </form>
     </div>
 </div>
-
-
-
 {% endblock body %}
 </body>
 </html>
