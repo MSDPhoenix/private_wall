@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+<div class="danger container mx-auto my-5 py-5">
+    <h4 class="text-danger text-center mb-3">Danger</h4>
+    <p>Hmmm.... message {{message_id}} doesn't belong to you. 
+        <br>Are you trying to hack my site???</p>
+    <p>Your IP address <span class="text-danger">{{ip_address}}</span> has been recorded.</p>
+    <p>Next time you attempt an activity like this {#<br>#}
+        we'll log you off automatically and report your IP {#<br>#}
+        address to our site administrator.</p>
+</div>
+
+{% endblock body %}

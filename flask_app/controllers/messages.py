@@ -3,6 +3,7 @@ from flask import render_template,redirect,request,session,flash
 from flask_app.models.user import User
 from flask_app.models.message import Message
 from flask_bcrypt import Bcrypt
+import socket
 bcrypt = Bcrypt(app)
 
 @app.route('/')
@@ -41,5 +42,24 @@ def destroy(message_id):
     data = {
         'message_id' : message_id
     }
+    message = Message.get_by_id(data)
+    if message.receiver_id != session['user_id']:
+        return redirect(f'/danger/{message_id}')
     Message.destroy(data)
     return redirect('/wall/')
+
+
+@app.route('/danger/<int:message_id>/')
+def danger(message_id):
+    if 'been_warned' not in session:
+        session['been_warned']=True
+        print('been_warned')
+    else:
+        print("Z")
+        print("logging out")
+        session.clear()
+        flash('You have been logged out','login')
+        return redirect('/')
+    host_name = socket.gethostname()
+    ip_address = socket.gethostbyname(host_name)
+    return render_template('danger.html', message_id=message_id,ip_address=ip_address)

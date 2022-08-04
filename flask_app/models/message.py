@@ -65,3 +65,13 @@ class Message:
                 '''
         return connectToMySQL(db).query_db(query,data)
 
+    @classmethod
+    def get_by_id(cls,data):
+        query = '''
+                SELECT * FROM messages WHERE id = %(message_id)s;
+                '''
+        result = connectToMySQL(db).query_db(query,data)
+        message = cls(result[0])
+        return message
+
+
